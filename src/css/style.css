@@ -43,6 +43,10 @@ header {
   z-index: 20; 
 }
 
+.nav-menu a:hover {
+color: rgba(255, 255, 255, 0.9);;
+}
+
 .hero-content {
   position: relative;
   z-index: 10;
@@ -77,6 +81,11 @@ header {
   font-weight: 500;
   font-size: 0.875rem;
 }
+
+.hero-button a:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 .hero-rating {
   display: flex;
   align-items: center;
@@ -517,8 +526,8 @@ extra-texto {
 }
 
 .orb {
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -534,8 +543,8 @@ extra-texto {
 }
 
 .orb img {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 }
 
 .orb.whatsapp {
@@ -720,7 +729,7 @@ footer {
   }
 
   .nav-menu a:hover {
-    color: #ffb703;
+    color:  rgba(255, 255, 255, 0.6);
   }
 
   @keyframes fadeIn {
