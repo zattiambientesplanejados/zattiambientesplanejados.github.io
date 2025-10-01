@@ -173,3 +173,40 @@ const botao = document.getElementById('lerMaisBtn');
     textoExtra.classList.toggle('mostrar');
     botao.innerText = textoExtra.classList.contains('mostrar') ? 'Ler menos' : 'Ler mais';
   });
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".metricas-sobre p:first-child");
+  let started = false;
+
+  // função de easing: começa rápido e desacelera no final
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+  const animateCount = (el, target, duration = 2200) => {
+    const startTime = performance.now();
+    const suffix = el.textContent.replace(/[0-9]/g, "");
+
+    const step = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = easeOutCubic(progress);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !started) {
+        started = true;
+        counters.forEach(c => {
+          const num = parseInt(c.textContent.replace(/\D/g, ""), 10) || 0;
+          animateCount(c, num, 3200); // 2.2s de animação
+        });
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(document.querySelector(".metricas-sobre"));
+});
